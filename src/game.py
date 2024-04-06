@@ -211,12 +211,12 @@ class Game:
                                     obj.damage_take(self.health.damage, self.all_object)
 
             for obj in self.all_object:
-                if obj.rect.x<0 or obj.rect.x>self.screen.get_width() or obj.rect.y<0 or obj.rect.y>self.screen.get_height():
+                if obj.rect.x<-1 or obj.rect.x>(self.screen.get_width()+1 ):
                     obj.remove(self.all_object)
-                    if not obj.name in ['Racaillou','Gravalanch','Grolem','Voltrobe','Electrode']:
-                        self.health.get_damage(obj.damage)
-                    else:
+                    if obj.name in ['Racaillou','Gravalanch','Grolem','Voltrobe','Electrode']:
                         self.add_score(obj.loot_amount)
+                    else:
+                        self.health.get_damage(obj.damage)
                     self.update_health()
                     if self.health.current_health > 0:
                         self.need_spawn_object(self.nb_object)
