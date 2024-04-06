@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 from src.sounds import SoundManager
 
 
@@ -51,43 +52,43 @@ class Object(pygame.sprite.Sprite):
     def move(self, screen):
         if self.curve > 8:
             if (self.spawn_x < screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x += self.volcity
-                self.rect.y += self.volcity
+                self.rect.x += 1
+                self.rect.y = self.rect.x//2 + self.volcity
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x -= self.volcity
-                self.rect.y += self.volcity
+                self.rect.x -= 1
+                self.rect.y = self.rect.x//2 + self.volcity
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y >= screen.get_height()//2):
-                self.rect.x -= self.volcity
-                self.rect.y -= self.volcity
+                self.rect.x -= 1
+                self.rect.y = self.rect.x//2 + self.volcity
             else:
-                self.rect.x += self.volcity
-                self.rect.y -= self.volcity
+                self.rect.x += 1
+                self.rect.y = self.rect.x//2 + self.volcity
         elif self.curve > 4:
             if (self.spawn_x < screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x += 2 * self.volcity
-                self.rect.y += self.volcity
+                self.rect.x += 1
+                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x -= 2 * self.volcity
-                self.rect.y += self.volcity
+                self.rect.x -= 1
+                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y >= screen.get_height()//2):
-                self.rect.x -= 2 * self.volcity
-                self.rect.y -= self.volcity
+                self.rect.x -= 1
+                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
             else:
-                self.rect.x += 2 * self.volcity
-                self.rect.y -= self.volcity
+                self.rect.x += 1
+                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
         else:
             if (self.spawn_x < screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x += self.volcity
-                self.rect.y += 3 * self.volcity
+                self.rect.x += 1
+                self.rect.y = -self.rect.x **2//200 + self.rect.x*4-230
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
-                self.rect.x -= self.volcity
-                self.rect.y += 3 * self.volcity
+                self.rect.x -= 1
+                self.rect.y = -self.rect.x **2//200+ self.rect.x*4-230
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y >= screen.get_height()//2):
-                self.rect.x -= self.volcity
-                self.rect.y -= 3 * self.volcity
+                self.rect.x -= 1
+                self.rect.y = -self.rect.x **2//200+ self.rect.x*4-230
             else:
-                self.rect.x += self.volcity
-                self.rect.y -= 3 * self.volcity
+                self.rect.x += 1
+                self.rect.y = -self.rect.x **2//200+ self.rect.x*4-230
 
 
 # on défini ici une classe pour chaque objet à détruire
