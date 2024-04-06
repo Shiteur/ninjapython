@@ -31,6 +31,8 @@ class Game:
         # Générer les règle
         self.rulle = Rulle()
         self.possible_rulle = [RulleClassique, RulleBlitz, RulleBeginner, RulleSpeedUp]
+        #initialise le temps
+        self.time=0
         # Groupe d'objet
         self.nb_object = self.rulle.init_object_nb
         self.all_object = pygame.sprite.Group()
@@ -120,6 +122,8 @@ class Game:
         clock = pygame.time.Clock()
         # boucle du jeu
         running = True
+        #génère un minuteur:
+        start_tiks = pygame.time.get_ticks()
         while running:
             # Vérifié si on est sur l'écran d'accueil
             if self.is_starting:
@@ -154,6 +158,10 @@ class Game:
                 # affiche le score à l'écran
                 score_text = self.score_font.render(f'Score : {self.score}', 1, (0, 0, 0))
                 self.screen.blit(score_text, (10, 10))
+                # affiche le temps à l'écran
+                self.time=(pygame.time.get_ticks()-start_tiks)//1000
+                time_text = self.score_font.render(f'Temps : {self.time}',1,(0, 0, 0))
+                self.screen.blit(time_text, (10, 40))
 
             pygame.display.flip()
 
@@ -180,21 +188,25 @@ class Game:
                             self.choose_rulle()
                             self.sound_manager.play('click')
                             self.game_start()
+                            start_tiks = pygame.time.get_ticks()
                         elif menu.game_blitz_rect.collidepoint(event.pos):
                             self.level = 1
                             self.choose_rulle()
                             self.sound_manager.play('click')
                             self.game_start()
+                            start_tiks = pygame.time.get_ticks()
                         elif menu.game_beginner_rect.collidepoint(event.pos):
                             self.level = 2
                             self.choose_rulle()
                             self.sound_manager.play('click')
                             self.game_start()
+                            start_tiks = pygame.time.get_ticks()
                         elif menu.game_speedup_rect.collidepoint(event.pos):
                             self.level = 3
                             self.choose_rulle()
                             self.sound_manager.play('click')
                             self.game_start()
+                            start_tiks = pygame.time.get_ticks()
 
                     elif self.level != -1:
                         for obj in self.all_object:
@@ -209,6 +221,10 @@ class Game:
                                 else:
                                     self.need_spawn_object(self.nb_object)
                                     obj.damage_take(self.health.damage, self.all_object)
+
+            if self.level != -1:
+                if self.time == self.rulle.limit_time:
+                    self.game_over()
 
             for obj in self.all_object:
                 if obj.rect.x<-1 or obj.rect.x>(self.screen.get_width()+1 ):

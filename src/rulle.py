@@ -10,6 +10,7 @@ class Rulle:
         self.score_boost = 1
         self.init_object_nb = 3
         self.add_object_nb = 2
+        self.limit_time = 300
 
     def set_init_boost(self, amount):
         self.init_boost = amount
@@ -32,6 +33,9 @@ class Rulle:
     def set_add_object_nb(self, amount):
         self.add_object_nb = amount
 
+    def set_limit_time(self, amount):
+        self.limit_time = amount
+
     def check_palier(self, score):
           return score // self.palier
 
@@ -46,6 +50,7 @@ class RulleClassique(Rulle):
         self.set_score_boost(1)
         self.set_init_object_nb(2)
         self.set_add_object_nb(2)
+        self.set_limit_time(300)
 
 
 class RulleBlitz(Rulle):
@@ -58,6 +63,7 @@ class RulleBlitz(Rulle):
         self.set_score_boost(3)
         self.set_init_object_nb(3)
         self.set_add_object_nb(2)
+        self.set_limit_time(120)
 
 class RulleBeginner(Rulle):
     def __init__(self):
@@ -69,6 +75,7 @@ class RulleBeginner(Rulle):
         self.set_score_boost(1)
         self.set_init_object_nb(1)
         self.set_add_object_nb(1)
+        self.set_limit_time(300)
 
 class RulleSpeedUp(Rulle):
     def __init__(self):
@@ -80,3 +87,4 @@ class RulleSpeedUp(Rulle):
         self.set_score_boost(5)
         self.set_init_object_nb(2)
         self.set_add_object_nb(1)
+        self.set_limit_time(180)
