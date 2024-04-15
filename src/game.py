@@ -1,5 +1,6 @@
 from graphics import *
 from gameobject import *
+from musics import *
 from sounds import *
 from rulle import *
 import pygame
@@ -21,6 +22,8 @@ class Game:
         self.level = -1
         # gérer les effets sonore et la musique
         self.sound_manager = SoundManager()
+        self.music_manager = MusicManager()
+        self.current_music = 'intro'
         # Mettre le score du joueur à 0
         self.score = 0
         self.score_font = pygame.font.Font('dialogs/cityburn.ttf', 20)
@@ -110,10 +113,7 @@ class Game:
 
     def run(self):
         # génère la musique
-        pygame.mixer.init()
-        pygame.mixer.music.load('musics/volt_ost.ogg')
-        pygame.mixer.music.set_volume(0.2)
-        pygame.mixer.music.play(-1)
+        self.music_manager.play_music(self.current_music)
 
         intro = IntroScreen(self.screen)
         menu = MainMenu(self.screen)
@@ -127,6 +127,8 @@ class Game:
         while running:
             # Vérifié si on est sur l'écran d'accueil
             if self.is_starting:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, 'intro')
                 # affiche l'arière plan de l' écran d'accueil
                 self.screen.blit(intro.background, (0,0))
                 # affiche le titre du jeu
@@ -136,6 +138,8 @@ class Game:
                 # joue la musique de l'écran de bienvenu
 
             elif self.in_menu:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, 'select_level')
                 # affiche l'arière plan de l' écran du menu
                 self.screen.blit(menu.background, (0, 0))
                 # affiche les niveau
@@ -145,6 +149,8 @@ class Game:
                 self.screen.blit(menu.text_game_speedup, menu.game_speedup_rect)
 
             else:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, self.rulle.music)
                 # affiche l'arière plan de l' écran de jeu
                 self.screen.blit(ingame.background, (0, 0))
                 self.need_spawn_object(self.nb_object)

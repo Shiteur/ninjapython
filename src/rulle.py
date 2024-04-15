@@ -1,6 +1,5 @@
 import pygame
 
-
 class Rulle:
     def __init__(self):
         self.init_boost = 1.0
@@ -11,6 +10,7 @@ class Rulle:
         self.init_object_nb = 3
         self.add_object_nb = 2
         self.limit_time = 300
+        self.music = 'game_music1'
 
     def set_init_boost(self, amount):
         self.init_boost = amount
@@ -36,6 +36,9 @@ class Rulle:
     def set_limit_time(self, amount):
         self.limit_time = amount
 
+    def set_music(self, name):
+        self.music = name
+
     def check_palier(self, score):
           return score // self.palier
 
@@ -51,6 +54,7 @@ class RulleClassique(Rulle):
         self.set_init_object_nb(2)
         self.set_add_object_nb(2)
         self.set_limit_time(300)
+        self.set_music('game_music1')
 
 
 class RulleBlitz(Rulle):
@@ -64,6 +68,8 @@ class RulleBlitz(Rulle):
         self.set_init_object_nb(3)
         self.set_add_object_nb(2)
         self.set_limit_time(120)
+        self.set_music('game_music2')
+
 
 class RulleBeginner(Rulle):
     def __init__(self):
@@ -76,6 +82,8 @@ class RulleBeginner(Rulle):
         self.set_init_object_nb(1)
         self.set_add_object_nb(1)
         self.set_limit_time(300)
+        self.set_music('game_music1')
+
 
 class RulleSpeedUp(Rulle):
     def __init__(self):
@@ -88,3 +96,4 @@ class RulleSpeedUp(Rulle):
         self.set_init_object_nb(2)
         self.set_add_object_nb(1)
         self.set_limit_time(180)
+        self.set_music('game_music2')
