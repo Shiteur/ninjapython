@@ -1,4 +1,4 @@
-import pygame
+from graphics import *
 
 class Rulle:
     def __init__(self):

@@ -10,7 +10,8 @@ class SoundManager:
             'destroy1': pygame.mixer.Sound('Sounds/destroy_good_object.ogg'),
             'destroy2': pygame.mixer.Sound('Sounds/destroy_wrong_object.ogg')
         }
+        self.level_sounds = 10
 
     def play(self, name):
-        self.sounds[name].set_volume(0.1)
+        self.sounds[name].set_volume(0.01*self.level_sounds)
         self.sounds[name].play()

@@ -31,9 +31,10 @@ class Object(pygame.sprite.Sprite):
         self.rect.y = random.randint(0, self.game.screen.get_height()-10)
         self.spawn_x = self.rect.x
         self.spawn_y = self.rect.y
-        self.volcity = random.randint(vmin, vmax) *0.7
+        self.volcity = random.randint(vmin, vmax) * 0.7
         self.curve = random.randint(0, 12)
         self.loot_amount = 1
+        self.extra_time = 0
         self.name = name
 
     def damage_take(self, amount, groupe):
@@ -45,9 +46,14 @@ class Object(pygame.sprite.Sprite):
             self.sounds.play('destroy1')
             #ajouter des point au score
             self.game.add_score(self.loot_amount)
+            #ajouter le temp supplémentaire accordé par l'objet
+            self.game.rulle.limit_time += self.extra_time
 
     def set_loot_amount(self, amount):
         self.loot_amount = amount
+
+    def set_extra_time(self, time):
+        self.extra_time = time
 
     def move(self, screen):
         if self.curve > 8:
@@ -92,85 +98,150 @@ class Object(pygame.sprite.Sprite):
 
 
 # on défini ici une classe pour chaque objet à détruire
-class Bulbizarre(Object):
+class SnakeA1(Object):
     def __init__(self, game):
-        super().__init__(game, 'Bulbizarre', 1, 1, 1, 1)
+        super().__init__(game, 'SnakeA1', 1, 1, 1, 1)
         self.set_loot_amount(1)
 
 
-class Herbizarre(Object):
+class SnakeA2(Object):
     def __init__(self, game):
-        super().__init__(game, 'Herbizarre', 1, 1, 1, 2)
+        super().__init__(game, 'SnakeA2', 1, 1, 1, 2)
         self.set_loot_amount(5)
 
 
-class Florizarre(Object):
+class SnakeA3(Object):
     def __init__(self, game):
-        super().__init__(game, 'Florizarre', 2, 1, 1, 3)
+        super().__init__(game, 'SnakeA3', 2, 1, 1, 3)
         self.set_loot_amount(10)
 
 
-class Salamèche(Object):
+class SnakeB1(Object):
     def __init__(self, game):
-        super().__init__(game, 'Salamèche', 1, 1, 1, 1)
+        super().__init__(game, 'SnakeB1', 1, 1, 1, 1)
         self.set_loot_amount(1)
 
 
-class Reptincel(Object):
+class SnakeB2(Object):
     def __init__(self, game):
-        super().__init__(game, 'Reptincel', 1, 1, 1, 2)
+        super().__init__(game, 'SnakeB2', 1, 1, 1, 2)
         self.set_loot_amount(5)
 
 
-class Dracaufeu(Object):
+class SnakeB3(Object):
     def __init__(self, game):
-        super().__init__(game, 'Dracaufeu', 2, 1, 1, 3)
+        super().__init__(game, 'SnakeB3', 2, 1, 1, 3)
         self.set_loot_amount(10)
 
 
-class Carapuce(Object):
+class SnakeC1(Object):
     def __init__(self, game):
-        super().__init__(game, 'Carapuce', 1, 1, 1, 1)
+        super().__init__(game, 'SnakeC1', 1, 1, 1, 1)
         self.set_loot_amount(1)
 
 
-class Carabaffe(Object):
+class SnakeC2(Object):
     def __init__(self, game):
-        super().__init__(game, 'Carabaffe', 1, 1, 1, 2)
+        super().__init__(game, 'SnakeC2', 1, 1, 1, 2)
         self.set_loot_amount(5)
 
 
-class Tortank(Object):
+class SnakeC3(Object):
     def __init__(self, game):
-        super().__init__(game, 'Tortank', 2, 1, 1, 3)
+        super().__init__(game, 'SnakeC3', 2, 1, 1, 3)
         self.set_loot_amount(10)
 
 
-class Racaillou(Object):
+class SnakeD1(Object):
     def __init__(self, game):
-        super().__init__(game, 'Racaillou', 1, 1, 1, 1)
+        super().__init__(game, 'SnakeD1', 1, 1, 1, 1)
         self.set_loot_amount(1)
 
 
-class Gravalanch(Object):
+class SnakeD2(Object):
     def __init__(self, game):
-        super().__init__(game, 'Gravalanch', 1, 1, 1, 2)
+        super().__init__(game, 'SnakeD2', 1, 1, 1, 2)
         self.set_loot_amount(5)
 
 
-class Grolem(Object):
+class SnakeD3(Object):
     def __init__(self, game):
-        super().__init__(game, 'Grolem', 1, 2, 1, 3)
+        super().__init__(game, 'SnakeD3', 2, 1, 1, 3)
         self.set_loot_amount(10)
 
 
-class Voltrobe(Object):
+class SnakeSpeA1(Object):
     def __init__(self, game):
-        super().__init__(game, 'Voltrobe', 1, 1, 1, 1)
+        super().__init__(game, 'SnakeSpeA1', 1, 1, 1, 1)
+        self.set_loot_amount(1)
+        self.set_extra_time(5)
+
+
+class SnakeSpeA2(Object):
+    def __init__(self, game):
+        super().__init__(game, 'SnakeSpeA2', 1, 1, 1, 2)
+        self.set_loot_amount(5)
+        self.set_extra_time(10)
+
+
+class SnakeSpeB1(Object):
+    def __init__(self, game):
+        super().__init__(game, 'SnakeSpeB1', 1, 1, 1, 1)
+        self.set_loot_amount(1)
+        self.set_extra_time(5)
+
+
+class SnakeSpeB2(Object):
+    def __init__(self, game):
+        super().__init__(game, 'SnakeSpeB2', 1, 1, 1, 3)
+        self.set_loot_amount(10)
+        self.set_extra_time(10)
+
+
+class DumyA1(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyA1', 1, 1, 1, 1)
         self.set_loot_amount(1)
 
 
-class Electrode(Object):
+class DumyA2(Object):
     def __init__(self, game):
-        super().__init__(game, 'Electrode', 1, 2, 1, 2)
+        super().__init__(game, 'DumyA2', 1, 2, 1, 2)
         self.set_loot_amount(5)
+
+
+class DumyB1(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyB1', 1, 1, 1, 1)
+        self.set_loot_amount(1)
+
+
+class DumyB2(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyB2', 1, 2, 1, 2)
+        self.set_loot_amount(5)
+
+
+class DumyC1(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyC1', 1, 1, 1, 2)
+        self.set_loot_amount(1)
+
+
+class DumyC2(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyC2', 1, 3, 1, 3)
+        self.set_loot_amount(10)
+
+
+class DumyD1(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyD1', 1, 1, 1, 1)
+        self.set_loot_amount(1)
+
+
+class DumyD2(Object):
+    def __init__(self, game):
+        super().__init__(game, 'DumyD2', 1, 2, 1, 3)
+        self.set_loot_amount(10)
+        self.set_extra_time(-10)
