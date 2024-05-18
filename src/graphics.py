@@ -1,6 +1,5 @@
 import pygame
-from musics import *
-from sounds import *
+
 
 class IntroScreen:
     def __init__(self, screen):
@@ -73,9 +72,6 @@ class InGame:
 
 class InSetting:
     def __init__(self, screen):
-        # récupère les effets sonore et la musique
-        self.sound_manager = SoundManager()
-        self.music_manager = MusicManager()
         # charger et importer l'arrière plan
         self.background_setting = pygame.image.load('graphics/Background_setting.png')
         self.background_setting = pygame.transform.scale(self.background_setting, (800, 800))
@@ -135,11 +131,40 @@ class InSetting:
                     screen.get_height() // 10 - screen.get_height() // 6)-13)
 
 
+class InRule:
+    def __init__(self, screen):
+        # charger et importer l'arrière plan
+        self.background_rule = pygame.image.load('graphics/Background_setting.png')
+        self.background_rule = pygame.transform.scale(self.background_rule, (800, 800))
+        # charger le style et la taille du text de bienvenu
+        self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
+        # importer l'arrière plan des text
+        self.background_text = pygame.image.load('graphics/Background_text.png')
+        self.background_text = pygame.transform.scale(self.background_text, (140, 30))
+        #chargé les explication du jeu
+        self.text_rule_title = self.font_text.render('Les règles du jeu NinjaPython:', True, (255, 255, 255))
+        self.rule_title_rect = self.text_rule_title.get_rect()
+        self.rule_title_rect.topleft = (screen.get_width() // 2.5 -60, screen.get_height() // 10)
+        self.text_rule = ["Le but du jeu est d'attraper le plus de serpent qui se ballade sur votre écran dans un temps ",
+                          "imparti mais attention à ne pas attraper autre chose que des serpent cela pourrais être ",
+                          "dangereux.Chaque mode de jeu possède sa spécificité et son rangé dans un ordre de dificulté ",
+                          "croissante. Le premier est le mode facile ou le joueur possède 5 vies et 300 secondes pour ",
+                          "attraper les serpents. Le deuxième mode de jeu est le mode classique ou l'on a 3 vies et 300 ",
+                          "secondes pour attraper les serpents. Le quatrième mode de jeu est le mode blitz où le joueur ",
+                          "possède 3 vies et 120 secondes pour attraper les serments.Et le dernier mode de jeu est le ",
+                          "mode Speed Up où le joueur à 180 secondes et 5 vies pour attraper les serpent avec une ",
+                          "vitesse augmenté."]
+        # charger le text pour quitter
+        self.text_rule_back = self.font_text.render('Back', True, (0, 0, 0))
+        self.rule_back_rect = self.text_rule_back.get_rect()
+        self.rule_back_rect.topleft = (screen.get_width() // 2.5 + 50, screen.get_height() // 6 - 9 * (screen.get_height() // 10 - screen.get_height() // 6)-13)
+
+
 class HealthSprite(pygame.sprite.Sprite):
     def __init__(self, name, x, y):
         super().__init__()
         self.image = pygame.image.load(f'graphics/{name}.png')
-        self.image = pygame.transform.scale(self.image , (20, 20))
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

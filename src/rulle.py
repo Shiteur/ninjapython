@@ -89,7 +89,7 @@ class RulleSpeedUp(Rulle):
     def __init__(self):
         super().__init__()
         self.set_init_boost(1.5)
-        self.set_add_boost(1.2)
+        self.set_add_boost(1.5)
         self.set_health_player(5)
         self.set_palier(30)
         self.set_score_boost(5)

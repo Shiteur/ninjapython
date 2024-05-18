@@ -72,16 +72,16 @@ class Object(pygame.sprite.Sprite):
         elif self.curve > 4:
             if (self.spawn_x < screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
                 self.rect.x += 1
-                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
+                self.rect.y = screen.get_height()//2 * math.sin(self.rect.x*10**-2)+screen.get_height()//2
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
                 self.rect.x -= 1
-                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
+                self.rect.y = screen.get_height()//2 * math.sin(self.rect.x*10**-2)+screen.get_height()//2
             elif (self.spawn_x >= screen.get_width()//2) and (self.spawn_y >= screen.get_height()//2):
                 self.rect.x -= 1
-                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
+                self.rect.y = screen.get_height()//2 * math.sin(self.rect.x*10**-2)+screen.get_height()//2
             else:
                 self.rect.x += 1
-                self.rect.y = 100 * math.sin(self.rect.x*10**-1)+screen.get_height()//2
+                self.rect.y = screen.get_height()//2 * math.sin(self.rect.x*10**-2)+screen.get_height()//2
         else:
             if (self.spawn_x < screen.get_width()//2) and (self.spawn_y < screen.get_height()//2):
                 self.rect.x += 1

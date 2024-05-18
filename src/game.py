@@ -97,7 +97,7 @@ class Game:
     def randomize(self):
         if self.rulle.check_palier(self.score) >= 5:
             nb = random.randint(1, len(self.possible_object))
-            self.add_nb_object(self.rulle.add_object_nb, 4)
+            self.add_nb_object(self.rulle.add_object_nb, 3)
         elif self.rulle.check_palier(self.score) >= 4:
             nb = random.randint(1, len(self.possible_object)-4)
             self.add_nb_object(self.rulle.add_object_nb, 3)
@@ -130,6 +130,7 @@ class Game:
         menu = MainMenu(self.screen)
         ingame = InGame(self.screen)
         insetting = InSetting(self.screen)
+        inrule = InRule(self.screen)
 
         clock = pygame.time.Clock()
         # boucle du jeu
@@ -193,6 +194,15 @@ class Game:
                 self.screen.blit(insetting.text_setting_full_screen_d, insetting.setting_full_screen_d_rect)
                 self.screen.blit(insetting.background_text1, (self.screen.get_width() // 2.5,self.screen.get_height() // 6 - 3 * (self.screen.get_height() // 10 - self.screen.get_height() // 6) - 5))
                 self.screen.blit(insetting.text_setting_back, insetting.setting_back_rect)
+
+            elif self.in_rule:
+                # affiche l'arière plan de l' écran des règle
+                self.screen.blit(inrule.background_rule, (0, 0))
+                self.screen.blit(inrule.text_rule_title, inrule.rule_title_rect)
+                for i in range(0,len(inrule.text_rule)):
+                    self.screen.blit(self.score_font.render(inrule.text_rule[i], 1, (255, 255, 255)),(15, self.screen.get_height()//6- i * (self.screen.get_height() // 10 - self.screen.get_height() // 6)))
+                self.screen.blit(inrule.background_text,(self.screen.get_width() // 2.5,self.screen.get_height() // 6 - 9 * (self.screen.get_height() // 10 - self.screen.get_height() // 6) - 5))
+                self.screen.blit(inrule.text_rule_back,inrule.rule_back_rect)
 
             else:
                 # change la musique si besoin
@@ -266,6 +276,10 @@ class Game:
                             self.sound_manager.play('click')
                             self.in_menu=False
                             self.in_setting=True
+                        elif menu.game_rule_rect.collidepoint(event.pos):
+                            self.sound_manager.play('click')
+                            self.in_menu=False
+                            self.in_rule=True
                         elif menu.game_leave_rect.collidepoint(event.pos):
                             self.sound_manager.play('click')
                             pygame.quit()
@@ -295,6 +309,12 @@ class Game:
                         elif insetting.DownButton_sound_rect.collidepoint(event.pos) and self.sound_manager.level_sounds> 0:
                             self.sound_manager.level_sounds -= 5
                             self.sound_manager.play('click')
+
+                    elif self.in_rule:
+                        if inrule.rule_back_rect.collidepoint(event.pos):
+                            self.sound_manager.play('click')
+                            self.in_rule = False
+                            self.in_menu= True
 
                     elif self.level != -1:
                         for obj in self.all_object:
