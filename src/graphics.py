@@ -159,7 +159,36 @@ class InRule:
         self.rule_back_rect = self.text_rule_back.get_rect()
         self.rule_back_rect.topleft = (screen.get_width() // 2.5 + 50, screen.get_height() // 6 - 9 * (screen.get_height() // 10 - screen.get_height() // 6)-13)
 
-
+class Incredit:
+    def __init__(self,screen):
+        # charger et importer l'arrière plan
+        self.background_credit = pygame.image.load('graphics/Background_setting.png')
+        self.background_credit = pygame.transform.scale(self.background_credit, (800, 800))
+        # charger le style et la taille du text de bienvenu
+        self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
+        # importer l'arrière plan des text
+        self.background_text = pygame.image.load('graphics/Background_text.png')
+        self.background_text = pygame.transform.scale(self.background_text, (140, 30))
+        # chargé les explication du jeu
+        self.text_credit_title = self.font_text.render('Les crédits du jeu NinjaPython:', True, (255, 255, 255))
+        self.credit_title_rect = self.text_credit_title.get_rect()
+        self.credit_title_rect.topleft = (screen.get_width() // 2.5 - 60, screen.get_height() // 10)
+        self.text_credit = [
+            "GRAPHIC:",
+            "sprite: Carol-aredesu(deviant art)",
+            "BackGround:FlorentLlamas(deviant art),JoeyJazz(deviant art),SebastianWagner(deviant art),",
+            "ElenaDudina(deviant art),itsmejackusephot(deviant art)",
+            "Le rest des ressources graphiques: Thomas DANJOU et Rayan EID",
+            "Testeur: Rayan EID",
+            "Dévelloppement: Thomas DANJOU",
+            "Music et effet sonore: PSDK",
+            "Le rest(calcule de trajectoire,idées du projet,idées des fonctionnalités,...):",
+            "Guillaume BIVILLE, XIAO Jingfan, LICHNEROWICZ Achille, DESFORGES Alexandre"]
+        # charger le text pour quitter
+        self.text_credit_back = self.font_text.render('Back', True, (0, 0, 0))
+        self.credit_back_rect = self.text_credit_back.get_rect()
+        self.credit_back_rect.topleft = (screen.get_width() // 2.5 + 50, screen.get_height() // 6 - 10 * (
+                    screen.get_height() // 10 - screen.get_height() // 6) - 13)
 class HealthSprite(pygame.sprite.Sprite):
     def __init__(self, name, x, y):
         super().__init__()

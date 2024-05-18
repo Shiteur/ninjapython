@@ -131,6 +131,7 @@ class Game:
         ingame = InGame(self.screen)
         insetting = InSetting(self.screen)
         inrule = InRule(self.screen)
+        incredit = Incredit(self.screen)
 
         clock = pygame.time.Clock()
         # boucle du jeu
@@ -203,6 +204,18 @@ class Game:
                     self.screen.blit(self.score_font.render(inrule.text_rule[i], 1, (255, 255, 255)),(15, self.screen.get_height()//6- i * (self.screen.get_height() // 10 - self.screen.get_height() // 6)))
                 self.screen.blit(inrule.background_text,(self.screen.get_width() // 2.5,self.screen.get_height() // 6 - 9 * (self.screen.get_height() // 10 - self.screen.get_height() // 6) - 5))
                 self.screen.blit(inrule.text_rule_back,inrule.rule_back_rect)
+
+            elif self.in_credit:
+                # affiche l'arière plan de l' écran des crédits
+                self.screen.blit(incredit.background_credit, (0, 0))
+                self.screen.blit(incredit.text_credit_title, incredit.credit_title_rect)
+                for i in range(0,len(incredit.text_credit)):
+                    text=self.score_font.render(incredit.text_credit[i], 1, (255, 255, 255))
+                    credit_text_rect = text.get_rect()
+                    credit_text_rect.center = (self.screen.get_height()//1.5, self.screen.get_height()//6- i * (self.screen.get_height() // 10 - self.screen.get_height() // 6))
+                    self.screen.blit(text,credit_text_rect)
+                self.screen.blit(incredit.background_text,(self.screen.get_width() // 2.5,self.screen.get_height() // 6 - 10 * (self.screen.get_height() // 10 - self.screen.get_height() // 6) - 5))
+                self.screen.blit(incredit.text_credit_back,incredit.credit_back_rect)
 
             else:
                 # change la musique si besoin
@@ -280,6 +293,10 @@ class Game:
                             self.sound_manager.play('click')
                             self.in_menu=False
                             self.in_rule=True
+                        elif menu.game_credit_rect.collidepoint(event.pos):
+                            self.sound_manager.play('click')
+                            self.in_menu=False
+                            self.in_credit=True
                         elif menu.game_leave_rect.collidepoint(event.pos):
                             self.sound_manager.play('click')
                             pygame.quit()
@@ -314,6 +331,12 @@ class Game:
                         if inrule.rule_back_rect.collidepoint(event.pos):
                             self.sound_manager.play('click')
                             self.in_rule = False
+                            self.in_menu= True
+
+                    elif self.in_credit:
+                        if incredit.credit_back_rect.collidepoint(event.pos):
+                            self.sound_manager.play('click')
+                            self.in_credit = False
                             self.in_menu= True
 
                     elif self.level != -1:
