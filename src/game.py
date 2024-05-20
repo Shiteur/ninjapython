@@ -175,6 +175,8 @@ class Game:
                 self.screen.blit(menu.text_game_leave, menu.game_leave_rect)
 
             elif self.in_setting:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, 'other')
                 # affiche l'arière plan de l' écran des paramètre
                 self.screen.blit(insetting.background_setting, (0, 0))
                 self.screen.blit(insetting.UpButton_music, (self.screen.get_width() // 2.5 - 60, self.screen.get_height() //10))
@@ -197,6 +199,8 @@ class Game:
                 self.screen.blit(insetting.text_setting_back, insetting.setting_back_rect)
 
             elif self.in_rule:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, 'other')
                 # affiche l'arière plan de l' écran des règle
                 self.screen.blit(inrule.background_rule, (0, 0))
                 self.screen.blit(inrule.text_rule_title, inrule.rule_title_rect)
@@ -206,6 +210,8 @@ class Game:
                 self.screen.blit(inrule.text_rule_back,inrule.rule_back_rect)
 
             elif self.in_credit:
+                # change la musique si besoin
+                self.current_music = self.music_manager.need_change_music(self.current_music, 'other')
                 # affiche l'arière plan de l' écran des crédits
                 self.screen.blit(incredit.background_credit, (0, 0))
                 self.screen.blit(incredit.text_credit_title, incredit.credit_title_rect)

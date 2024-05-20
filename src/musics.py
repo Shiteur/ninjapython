@@ -7,7 +7,8 @@ class MusicManager:
             'intro': 'musics/intro.ogg',
             'game_music1': 'musics/volt_ost.ogg',
             'game_music2': 'musics/xy_gts.ogg',
-            'select_level': 'musics/hall-of-fame.ogg'
+            'select_level': 'musics/hall-of-fame.ogg',
+            'other' : 'musics/Wi-Fi Plaza.ogg',
         }
         self.level_music = 20
 

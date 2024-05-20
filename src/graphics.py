@@ -4,7 +4,7 @@ import pygame
 class IntroScreen:
     def __init__(self, screen):
         # charger et importer l'arrière plan
-        self.background = pygame.image.load('graphics/Background_intro.png')
+        self.background = pygame.image.load('graphics/Background/Background_intro.png')
         self.background = pygame.transform.scale(self.background, (800, 800))
         # charger le style et la taille du text du Titre
         self.font_title = pygame.font.Font('dialogs/cityburn.ttf', 50)
@@ -13,17 +13,17 @@ class IntroScreen:
         self.title_rect.center = (screen.get_width() // 2, screen.get_height() // 3)
         # charger le style et la taille du text de bienvenu
         self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
-        self.text_text = self.font_text.render('click sur la fenêtre pour commencer', True, (0, 0, 0))
+        self.text_text = self.font_text.render('click sur la fenêtre pour commencer', True, (255, 255, 255))
         self.text_rect = self.text_text.get_rect()
         self.text_rect.center = (screen.get_width() // 2, screen.get_height() - screen.get_height() // 3)
 
 class MainMenu:
     def __init__(self, screen):
         # charger et importer l'arrière plan
-        self.background = pygame.image.load('graphics/Background_main_menu.jpg')
+        self.background = pygame.image.load('graphics/Background/Background_main_menu.jpg')
         self.background = pygame.transform.scale(self.background, (800, 800))
         #importer l'arrière plan des text
-        self.background_text = pygame.image.load('graphics/Background_text.png')
+        self.background_text = pygame.image.load('graphics/Background/Background_text.png')
         self.background_text = pygame.transform.scale(self.background_text, (140, 30))
         # charger le style et la taille du text de bienvenu
         self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
@@ -64,21 +64,21 @@ class MainMenu:
 class InGame:
     def __init__(self, screen):
         # charger et importer l'arrière plan
-        self.background_classique = pygame.image.load('graphics/Background_classique.png')
+        self.background_classique = pygame.image.load('graphics/Background/Background_classique.png')
         self.background_classique = pygame.transform.scale(self.background_classique, (800, 800))
-        self.background_hard = pygame.image.load('graphics/Background_SpeedUp.png')
+        self.background_hard = pygame.image.load('graphics/Background/Background_SpeedUp.png')
         self.background_hard = pygame.transform.scale(self.background_hard, (800, 800))
 
 
 class InSetting:
     def __init__(self, screen):
         # charger et importer l'arrière plan
-        self.background_setting = pygame.image.load('graphics/Background_setting.png')
+        self.background_setting = pygame.image.load('graphics/Background/Background_setting.png')
         self.background_setting = pygame.transform.scale(self.background_setting, (800, 800))
         # importer l'arrière plan des text
-        self.background_text1 = pygame.image.load('graphics/Background_text.png')
+        self.background_text1 = pygame.image.load('graphics/Background/Background_text.png')
         self.background_text1 = pygame.transform.scale(self.background_text1, (140, 30))
-        self.background_text2 = pygame.image.load('graphics/Background_text.png')
+        self.background_text2 = pygame.image.load('graphics/Background/Background_text.png')
         self.background_text2 = pygame.transform.scale(self.background_text2, (180, 30))
         #importer les boutton pour la music
         self.UpButton_music = pygame.image.load('graphics/UpButton.png')
@@ -134,12 +134,12 @@ class InSetting:
 class InRule:
     def __init__(self, screen):
         # charger et importer l'arrière plan
-        self.background_rule = pygame.image.load('graphics/Background_setting.png')
+        self.background_rule = pygame.image.load('graphics/Background/Background_setting.png')
         self.background_rule = pygame.transform.scale(self.background_rule, (800, 800))
         # charger le style et la taille du text de bienvenu
         self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
         # importer l'arrière plan des text
-        self.background_text = pygame.image.load('graphics/Background_text.png')
+        self.background_text = pygame.image.load('graphics/Background/Background_text.png')
         self.background_text = pygame.transform.scale(self.background_text, (140, 30))
         #chargé les explication du jeu
         self.text_rule_title = self.font_text.render('Les règles du jeu NinjaPython:', True, (255, 255, 255))
@@ -162,12 +162,12 @@ class InRule:
 class Incredit:
     def __init__(self,screen):
         # charger et importer l'arrière plan
-        self.background_credit = pygame.image.load('graphics/Background_setting.png')
+        self.background_credit = pygame.image.load('graphics/Background/Background_setting.png')
         self.background_credit = pygame.transform.scale(self.background_credit, (800, 800))
         # charger le style et la taille du text de bienvenu
         self.font_text = pygame.font.Font('dialogs/cityburn.ttf', 20)
         # importer l'arrière plan des text
-        self.background_text = pygame.image.load('graphics/Background_text.png')
+        self.background_text = pygame.image.load('graphics/Background/Background_text.png')
         self.background_text = pygame.transform.scale(self.background_text, (140, 30))
         # chargé les explication du jeu
         self.text_credit_title = self.font_text.render('Les crédits du jeu NinjaPython:', True, (255, 255, 255))

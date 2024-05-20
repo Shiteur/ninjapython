@@ -174,28 +174,28 @@ class SnakeSpeA1(Object):
     def __init__(self, game):
         super().__init__(game, 'SnakeSpeA1', 1, 1, 1, 1)
         self.set_loot_amount(1)
-        self.set_extra_time(5)
+        self.set_extra_time(1)
 
 
 class SnakeSpeA2(Object):
     def __init__(self, game):
         super().__init__(game, 'SnakeSpeA2', 1, 1, 1, 2)
         self.set_loot_amount(5)
-        self.set_extra_time(10)
+        self.set_extra_time(5)
 
 
 class SnakeSpeB1(Object):
     def __init__(self, game):
         super().__init__(game, 'SnakeSpeB1', 1, 1, 1, 1)
         self.set_loot_amount(1)
-        self.set_extra_time(5)
+        self.set_extra_time(1)
 
 
 class SnakeSpeB2(Object):
     def __init__(self, game):
         super().__init__(game, 'SnakeSpeB2', 1, 1, 1, 3)
         self.set_loot_amount(10)
-        self.set_extra_time(10)
+        self.set_extra_time(7)
 
 
 class DumyA1(Object):
@@ -236,12 +236,13 @@ class DumyC2(Object):
 
 class DumyD1(Object):
     def __init__(self, game):
-        super().__init__(game, 'DumyD1', 1, 1, 1, 1)
+        super().__init__(game, 'DumyD1', 1, 0, 1, 1)
         self.set_loot_amount(1)
+        self.set_extra_time(-10)
 
 
 class DumyD2(Object):
     def __init__(self, game):
-        super().__init__(game, 'DumyD2', 1, 2, 1, 3)
+        super().__init__(game, 'DumyD2', 1, 0, 1, 3)
         self.set_loot_amount(10)
-        self.set_extra_time(-10)
+        self.set_extra_time(-30)
